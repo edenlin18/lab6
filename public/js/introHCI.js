@@ -10,8 +10,8 @@ $(document).ready(function() {
  */
 function initializePage() {
 	$('.project a').click(addProjectDetails);
-
 	$('#colorBtn').click(randomizeColors);
+	$('#worldBankBtn').click(addWorldBankData);
 }
 
 /*
@@ -59,4 +59,14 @@ function processRandomizeColors(data) {
 	$('h1, h2, h3, h4, h5, h5').css('color', colors[2]);
 	$('p').css('color', colors[3]);
 	$('.project img').css('opacity', .75);
+}
+
+window.processworldbankdata = function(data) {
+  alert(JSON.stringify(data));
+};
+
+function addWorldBankData(e) {
+	console.log("User clicked on world bank button");
+
+	$.get('http://api.worldbank.org/countries/all/indicators/SP.POP.TOTL?format=jsonP&prefix=processworldbankdata', processworldbankdata, 'jsonp');
 }
